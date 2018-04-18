@@ -1,0 +1,33 @@
+diff --git a/src/main/java/assignment4/BasicGridWorld.java b/src/main/java/assignment4/BasicGridWorld.java
+index 2f1a3c7..312f63e 100644
+--- a/src/main/java/assignment4/BasicGridWorld.java
++++ b/src/main/java/assignment4/BasicGridWorld.java
+@@ -80,8 +80,8 @@ public class BasicGridWorld implements DomainGenerator {
+ 		State s = new MutableState();
+ 		ObjectInstance agent = new MutableObjectInstance(
+ 				domain.getObjectClass(CLASSAGENT), "agent0");
+-		agent.setValue(ATTX, 0);
+-		agent.setValue(ATTY, 0);
++		agent.setValue(ATTX, 1);
++		agent.setValue(ATTY, 1);
+ 
+ 		ObjectInstance location = new MutableObjectInstance(
+ 				domain.getObjectClass(CLASSLOCATION), "location0");
+diff --git a/src/main/java/assignment4/util/LocationPainter.java b/src/main/java/assignment4/util/LocationPainter.java
+index c59850c..784031f 100644
+--- a/src/main/java/assignment4/util/LocationPainter.java
++++ b/src/main/java/assignment4/util/LocationPainter.java
+@@ -37,11 +37,13 @@ public class LocationPainter implements ObjectPainter {
+ 
+ 		//left coordinate of cell on our canvas
+ 		float rx = ax*width;
++		rx = rx - 1*width;
+ 
+ 		//top coordinate of cell on our canvas
+ 		//coordinate system adjustment because the java canvas
+ 		//origin is in the top left instead of the bottom right
+ 		float ry = cHeight - height - ay*height;
++		ry = ry + 9*height;
+ 
+ 		//paint the rectangle
+ 		g2.fill(new Rectangle2D.Float(rx, ry, width, height));

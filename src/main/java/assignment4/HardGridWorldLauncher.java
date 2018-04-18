@@ -20,7 +20,7 @@ public class HardGridWorldLauncher {
 	//runValueIteration, runPolicyIteration, and runQLearning indicate which algorithms will run in the experiment
 	private static boolean runValueIteration = true; 
 	private static boolean runPolicyIteration = true;
-	private static boolean runQLearning = true;
+	private static boolean runQLearning = false;
 	
 	//showValueIterationPolicyMap, showPolicyIterationPolicyMap, and showQLearningPolicyMap will open a GUI
 	//you can use to visualize the policy maps. Consider only having one variable set to true at a time
@@ -29,8 +29,8 @@ public class HardGridWorldLauncher {
 	private static boolean showPolicyIterationPolicyMap = true;
 	private static boolean showQLearningPolicyMap = true;
 	
-	private static Integer MAX_ITERATIONS = 100;
-	private static Integer NUM_INTERVALS = 100;
+	private static Integer MAX_ITERATIONS = 50;
+	private static Integer NUM_INTERVALS = 50;
 
 	protected static int[][] userMap = new int[][] { 
 										{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -41,9 +41,9 @@ public class HardGridWorldLauncher {
 										{ 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0},
 										{ 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0},
 										{ 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0},
-										{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-										{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-										{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},};
+										{ -4, -4, -4, 0, 0, 0, 0, 0, 0, 0, 0},
+										{ 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0},
+										{ 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 1},};
 
 //	private static Integer mapLen = map.length-1;
 

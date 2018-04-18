@@ -29,15 +29,21 @@ public class EasyGridWorldLauncher {
 	private static boolean showPolicyIterationPolicyMap = true;
 	private static boolean showQLearningPolicyMap = true;
 	
-	private static Integer MAX_ITERATIONS = 8;
-	private static Integer NUM_INTERVALS = 8;
+	private static Integer MAX_ITERATIONS = 50;
+	private static Integer NUM_INTERVALS = 50;
 
-	protected static int[][] userMap = new int[][] { 
-			{ 0, 0, 0, 0, 0},
-			{ 0, 1, 1, 1, 0},
-			{ 0, 1, 1, 1, 0},
-			{ 1, 0, 1, 1, 0},
-			{ 0, 0, 0, 0, 0}, };
+	protected static int[][] userMap = new int[][] {
+		 {1,1,1,1,1,1,1,1,1,1,1},
+		 {1,0,0,0,0,0,0,0,0,0,1},
+		 {1,0,1,1,1,0,1,1,1,0,1},
+		 {1,0,1,0,1,0,1,0,1,0,1},
+		 {1,0,1,0,1,0,1,0,1,0,1},
+		 {1,0,1,0,1,0,1,0,1,0,1},
+		 {1,0,1,0,1,0,1,0,1,0,1},
+		 {1,0,1,0,1,0,1,0,0,0,1},
+		 {1,0,1,0,1,0,1,1,1,0,1},
+		 {1,0,0,0,0,0,0,0,1,0,1},
+		 {1,1,1,1,1,1,1,1,1,1,1}};
 	
 //	private static Integer mapLen = map.length-1;
 
@@ -53,8 +59,8 @@ public class EasyGridWorldLauncher {
 
 		State initialState = BasicGridWorld.getExampleState(domain);
 
-		RewardFunction rf = new BasicRewardFunction(maxX,maxY); //Goal is at the top right grid
-		TerminalFunction tf = new BasicTerminalFunction(maxX,maxY); //Goal is at the top right grid
+		RewardFunction rf = new BasicRewardFunction(9,9); //Goal is at the bottom left
+		TerminalFunction tf = new BasicTerminalFunction(9,9); //Goal is at the bottom right
 
 		SimulatedEnvironment env = new SimulatedEnvironment(domain, rf, tf,
 				initialState);

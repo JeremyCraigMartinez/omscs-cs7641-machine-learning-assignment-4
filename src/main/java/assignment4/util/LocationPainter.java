@@ -48,7 +48,7 @@ public class LocationPainter implements ObjectPainter {
 
 
 	}
-	
+
 
 
 }

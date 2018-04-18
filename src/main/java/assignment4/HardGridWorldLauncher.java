@@ -18,14 +18,14 @@ public class HardGridWorldLauncher {
 	private static boolean visualizeInitialGridWorld = true; //Loads a GUI with the agent, walls, and goal
 	
 	//runValueIteration, runPolicyIteration, and runQLearning indicate which algorithms will run in the experiment
-	private static boolean runValueIteration = true; 
+	private static boolean runValueIteration = true;
 	private static boolean runPolicyIteration = true;
 	private static boolean runQLearning = true;
 	
 	//showValueIterationPolicyMap, showPolicyIterationPolicyMap, and showQLearningPolicyMap will open a GUI
 	//you can use to visualize the policy maps. Consider only having one variable set to true at a time
 	//since the pop-up window does not indicate what algorithm was used to generate the map.
-	private static boolean showValueIterationPolicyMap = true; 
+	private static boolean showValueIterationPolicyMap = true;
 	private static boolean showPolicyIterationPolicyMap = true;
 	private static boolean showQLearningPolicyMap = true;
 	
@@ -88,8 +88,8 @@ public class HardGridWorldLauncher {
 
 		State initialState = BasicGridWorld.getExampleState(domain);
 
-		RewardFunction rf = new BasicRewardFunction(17,31); //Goal is at the top right grid
-		TerminalFunction tf = new BasicTerminalFunction(28,15); //Goal is at the top right grid
+		RewardFunction rf = new BasicRewardFunction(15,28); //Goal is at the top right grid
+		TerminalFunction tf = new BasicTerminalFunction(15,28); //Goal is at the top right grid
 		
 		SimulatedEnvironment env = new SimulatedEnvironment(domain, rf, tf,
 				initialState);

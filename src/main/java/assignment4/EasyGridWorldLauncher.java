@@ -46,12 +46,19 @@ public class EasyGridWorldLauncher {
 
 	public static void main(String[] args) {
 		// for value iteration and policy iteration
-		runner(5, 5);
+		//runner(5, 5);
+		//runner(10, 10);
+		//runner(15, 15);
+		//runner(20, 20);
+		//runner(40, 40);
+
+		// for q-learning
 		runner(10, 10);
-		runner(15, 15);
-		runner(20, 20);
 		runner(40, 40);
-	}
+		runner(70, 70);
+		runner(100, 100);
+		runner(130, 130);
+}
 
 	private static void runner(Integer it, Integer in) {
 		// convert to BURLAP indexing
@@ -65,8 +72,8 @@ public class EasyGridWorldLauncher {
 
 		State initialState = BasicGridWorld.getExampleState(domain);
 
-		RewardFunction rf = new BasicRewardFunction(9,9); //Goal is at the bottom left
-		TerminalFunction tf = new BasicTerminalFunction(9,9); //Goal is at the bottom right
+		RewardFunction rf = new BasicRewardFunction(9,1); //Goal is at the bottom left
+		TerminalFunction tf = new BasicTerminalFunction(9,1); //Goal is at the bottom right
 
 		SimulatedEnvironment env = new SimulatedEnvironment(domain, rf, tf,
 				initialState);

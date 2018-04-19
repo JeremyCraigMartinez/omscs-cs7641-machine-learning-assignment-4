@@ -1,72 +1,33 @@
-diff --git a/diff_hardMDP b/diff_hardMDP
-index fd77732..e69de29 100644
---- a/diff_hardMDP
-+++ b/diff_hardMDP
-@@ -1,33 +0,0 @@
--diff --git a/src/main/java/assignment4/BasicGridWorld.java b/src/main/java/assignment4/BasicGridWorld.java
--index 2f1a3c7..e42f039 100644
----- a/src/main/java/assignment4/BasicGridWorld.java
--+++ b/src/main/java/assignment4/BasicGridWorld.java
--@@ -80,8 +80,8 @@ public class BasicGridWorld implements DomainGenerator {
-- 		State s = new MutableState();
-- 		ObjectInstance agent = new MutableObjectInstance(
-- 				domain.getObjectClass(CLASSAGENT), "agent0");
---		agent.setValue(ATTX, 0);
---		agent.setValue(ATTY, 0);
--+		agent.setValue(ATTX, 16);
--+		agent.setValue(ATTY, 11);
-- 
-- 		ObjectInstance location = new MutableObjectInstance(
-- 				domain.getObjectClass(CLASSLOCATION), "location0");
--diff --git a/src/main/java/assignment4/util/LocationPainter.java b/src/main/java/assignment4/util/LocationPainter.java
--index c59850c..14596e2 100644
----- a/src/main/java/assignment4/util/LocationPainter.java
--+++ b/src/main/java/assignment4/util/LocationPainter.java
--@@ -37,11 +37,13 @@ public class LocationPainter implements ObjectPainter {
-- 
-- 		//left coordinate of cell on our canvas
-- 		float rx = ax*width;
--+		rx = rx - 18*width;
-- 
-- 		//top coordinate of cell on our canvas
-- 		//coordinate system adjustment because the java canvas
-- 		//origin is in the top left instead of the bottom right
-- 		float ry = cHeight - height - ay*height;
--+		ry = ry + 28*height;
-- 
-- 		//paint the rectangle
-- 		g2.fill(new Rectangle2D.Float(rx, ry, width, height));
 diff --git a/src/main/java/assignment4/BasicGridWorld.java b/src/main/java/assignment4/BasicGridWorld.java
-index 2f1a3c7..6e14ddd 100644
+index 2f1a3c7..81b5160 100644
 --- a/src/main/java/assignment4/BasicGridWorld.java
 +++ b/src/main/java/assignment4/BasicGridWorld.java
-@@ -80,8 +80,9 @@ public class BasicGridWorld implements DomainGenerator {
+@@ -80,8 +80,8 @@ public class BasicGridWorld implements DomainGenerator {
  		State s = new MutableState();
  		ObjectInstance agent = new MutableObjectInstance(
  				domain.getObjectClass(CLASSAGENT), "agent0");
 -		agent.setValue(ATTX, 0);
 -		agent.setValue(ATTY, 0);
-+		// set start state (from bottom left)
 +		agent.setValue(ATTX, 16);
 +		agent.setValue(ATTY, 1);
  
  		ObjectInstance location = new MutableObjectInstance(
  				domain.getObjectClass(CLASSLOCATION), "location0");
 diff --git a/src/main/java/assignment4/util/LocationPainter.java b/src/main/java/assignment4/util/LocationPainter.java
-index c59850c..03ba280 100644
+index c59850c..01f9ca6 100644
 --- a/src/main/java/assignment4/util/LocationPainter.java
 +++ b/src/main/java/assignment4/util/LocationPainter.java
 @@ -37,11 +37,13 @@ public class LocationPainter implements ObjectPainter {
  
  		//left coordinate of cell on our canvas
  		float rx = ax*width;
-+		rx = rx - 16*width;
++		rx = rx - 6*width;
  
  		//top coordinate of cell on our canvas
  		//coordinate system adjustment because the java canvas
  		//origin is in the top left instead of the bottom right
  		float ry = cHeight - height - ay*height;
-+		ry = ry + 18*height;
++		ry = ry + 3*height;
  
  		//paint the rectangle
  		g2.fill(new Rectangle2D.Float(rx, ry, width, height));

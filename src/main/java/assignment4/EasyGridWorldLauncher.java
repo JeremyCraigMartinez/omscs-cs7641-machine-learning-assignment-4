@@ -16,21 +16,18 @@ import burlap.oomdp.visualizer.Visualizer;
 public class EasyGridWorldLauncher {
 	//These are some boolean variables that affect what will actually get executed
 	private static boolean visualizeInitialGridWorld = true; //Loads a GUI with the agent, walls, and goal
-	
+
 	//runValueIteration, runPolicyIteration, and runQLearning indicate which algorithms will run in the experiment
-	private static boolean runValueIteration = true; 
+	private static boolean runValueIteration = true;
 	private static boolean runPolicyIteration = true;
 	private static boolean runQLearning = true;
-	
+
 	//showValueIterationPolicyMap, showPolicyIterationPolicyMap, and showQLearningPolicyMap will open a GUI
 	//you can use to visualize the policy maps. Consider only having one variable set to true at a time
 	//since the pop-up window does not indicate what algorithm was used to generate the map.
-	private static boolean showValueIterationPolicyMap = true; 
+	private static boolean showValueIterationPolicyMap = true;
 	private static boolean showPolicyIterationPolicyMap = true;
 	private static boolean showQLearningPolicyMap = true;
-	
-	private static Integer MAX_ITERATIONS = 50;
-	private static Integer NUM_INTERVALS = 50;
 
 	protected static int[][] userMap = new int[][] {
 		 {1,1,1,1,1,1,1,1,1,1,1},
@@ -44,15 +41,24 @@ public class EasyGridWorldLauncher {
 		 {1,0,1,0,1,0,1,1,1,0,1},
 		 {1,0,0,0,0,0,0,0,1,0,1},
 		 {1,1,1,1,1,1,1,1,1,1,1}};
-	
+
 //	private static Integer mapLen = map.length-1;
 
 	public static void main(String[] args) {
+		// for value iteration and policy iteration
+		runner(5, 5);
+		runner(10, 10);
+		runner(15, 15);
+		runner(20, 20);
+		runner(40, 40);
+	}
+
+	private static void runner(Integer it, Integer in) {
 		// convert to BURLAP indexing
 		int[][] map = MapPrinter.mapToMatrix(userMap);
 		int maxX = map.length-1;
 		int maxY = map[0].length-1;
-		// 
+		//
 
 		BasicGridWorld gen = new BasicGridWorld(map,maxX,maxY); //0 index map is 11X11
 		Domain domain = gen.generateDomain();
@@ -67,12 +73,12 @@ public class EasyGridWorldLauncher {
 		//Print the map that is being analyzed
 		System.out.println("/////Easy Grid World Analysis/////\n");
 		MapPrinter.printMap(MapPrinter.matrixToMap(map));
-		
+
 		if (visualizeInitialGridWorld) {
 			visualizeInitialGridWorld(domain, gen, env);
 		}
-		
-		AnalysisRunner runner = new AnalysisRunner(MAX_ITERATIONS,NUM_INTERVALS);
+
+		AnalysisRunner runner = new AnalysisRunner(it,in);
 		if(runValueIteration){
 			runner.runValueIteration(gen,domain,initialState, rf, tf, showValueIterationPolicyMap);
 		}
@@ -101,6 +107,6 @@ public class EasyGridWorldLauncher {
 		exp.initGUI();
 
 	}
-	
+
 
 }

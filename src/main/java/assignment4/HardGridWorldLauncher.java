@@ -16,20 +16,20 @@ import burlap.oomdp.visualizer.Visualizer;
 public class HardGridWorldLauncher {
 	//These are some boolean variables that affect what will actually get executed
 	private static boolean visualizeInitialGridWorld = true; //Loads a GUI with the agent, walls, and goal
-	
+
 	//runValueIteration, runPolicyIteration, and runQLearning indicate which algorithms will run in the experiment
-	private static boolean runValueIteration = false;
-	private static boolean runPolicyIteration = false;
-	private static boolean runQLearning = false;
-	
+	private static boolean runValueIteration = true;
+	private static boolean runPolicyIteration = true;
+	private static boolean runQLearning = true;
+
 	//showValueIterationPolicyMap, showPolicyIterationPolicyMap, and showQLearningPolicyMap will open a GUI
 	//you can use to visualize the policy maps. Consider only having one variable set to true at a time
 	//since the pop-up window does not indicate what algorithm was used to generate the map.
 	private static boolean showValueIterationPolicyMap = true;
 	private static boolean showPolicyIterationPolicyMap = true;
 	private static boolean showQLearningPolicyMap = true;
-	
-	protected static int[][] userMap = new int[][] { 
+
+	protected static int[][] userMap = new int[][] {
 			 {1,1,1,1,1,0,0,0,0,0,0,1,1,0,0,0,1},
 			 {1,1,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0},
 			 {1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -53,12 +53,19 @@ public class HardGridWorldLauncher {
 //	private static Integer mapLen = map.length-1;
 
 	public static void main(String[] args) {
+		// for value iteration and policy iteration
+		//runner(5, 5);
+		//runner(10, 10);
+		//runner(15, 15);
+		//runner(20, 20);
+		//runner(40, 40);
+
+		// for q-learning
 		runner(10, 10);
-		//runner(30, 30);
-		//runner(50, 50);
-		//runner(70, 70);
-		//runner(90, 90);
-		//runner(400, 400);
+		runner(30, 30);
+		runner(70, 70);
+		runner(140, 140);
+		runner(250, 250);
 	}
 
 	private static void runner(Integer it, Integer in) {
@@ -67,7 +74,6 @@ public class HardGridWorldLauncher {
 		int[][] map = MapPrinter.mapToMatrix(userMap);
 		int maxX = map.length-1;
 		int maxY = map[0].length-1;
-		// 
 
 		BasicGridWorld gen = new BasicGridWorld(map,maxX,maxY); //0 index map is 11X11
 		Domain domain = gen.generateDomain();
@@ -76,17 +82,17 @@ public class HardGridWorldLauncher {
 
 		RewardFunction rf = new BasicRewardFunction(10,15); //Goal is at the top right grid
 		TerminalFunction tf = new BasicTerminalFunction(10,15); //Goal is at the top right grid
-		
+
 		SimulatedEnvironment env = new SimulatedEnvironment(domain, rf, tf,
 				initialState);
 		//Print the map that is being analyzed
 		System.out.println("/////Hard Grid World Analysis/////\n");
 		MapPrinter.printMap(MapPrinter.matrixToMap(map));
-		
+
 		if (visualizeInitialGridWorld) {
 			visualizeInitialGridWorld(domain, gen, env);
 		}
-		
+
 		AnalysisRunner runner = new AnalysisRunner(it,in);
 		if(runValueIteration){
 			runner.runValueIteration(gen,domain,initialState, rf, tf, showValueIterationPolicyMap);
@@ -116,6 +122,6 @@ public class HardGridWorldLauncher {
 		exp.initGUI();
 
 	}
-	
+
 
 }

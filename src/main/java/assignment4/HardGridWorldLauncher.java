@@ -18,9 +18,9 @@ public class HardGridWorldLauncher {
 	private static boolean visualizeInitialGridWorld = true; //Loads a GUI with the agent, walls, and goal
 	
 	//runValueIteration, runPolicyIteration, and runQLearning indicate which algorithms will run in the experiment
-	private static boolean runValueIteration = false;
+	private static boolean runValueIteration = true;
 	private static boolean runPolicyIteration = true;
-	private static boolean runQLearning = false;
+	private static boolean runQLearning = true;
 	
 	//showValueIterationPolicyMap, showPolicyIterationPolicyMap, and showQLearningPolicyMap will open a GUI
 	//you can use to visualize the policy maps. Consider only having one variable set to true at a time
@@ -29,39 +29,29 @@ public class HardGridWorldLauncher {
 	private static boolean showPolicyIterationPolicyMap = true;
 	private static boolean showQLearningPolicyMap = true;
 	
-	private static Integer MAX_ITERATIONS = 10;
-	private static Integer NUM_INTERVALS = 100;
+	private static Integer MAX_ITERATIONS = 20;
+	private static Integer NUM_INTERVALS = 20;
 
 	protected static int[][] userMap = new int[][] { 
-		 	 {1,1,1,1,1,0,0,0,0,0,0,1,1,0,0,0,1,1,0},
-		 	 {1,1,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0},
-		 	 {1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-		 	 {1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0},
-		 	 {1,1,1,1,1,1,0,0,0,0,1,0,0,0,0,0,0,0,0},
-		 	 {1,1,1,1,1,1,0,0,0,0,1,1,0,0,0,0,0,0,0},
-		 	 {1,1,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0},
-		 	 {1,1,1,1,1,0,0,0,0,0,1,0,1,1,1,0,0,0,0},
-		 	 {1,1,1,1,0,0,0,0,0,0,1,0,0,1,1,1,0,0,0},
-		 	 {1,1,1,1,0,0,0,0,0,0,1,0,0,1,1,0,0,0,0},
-		 	 {0,1,1,0,0,0,0,0,0,1,0,0,0,1,1,0,0,0,0},
-		 	 {0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,0,0,1},
-		 	 {0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,0,0,1},
-		 	 {0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0},
-		 	 {0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0},
-		 	 {0,0,0,0,0,0,0,1,1,0,0,0,1,1,0,0,0,0,0},
-		 	 {0,0,0,0,0,0,0,1,1,0,0,1,1,1,0,0,0,0,0},
-		 	 {0,0,0,0,0,0,0,1,1,0,0,1,1,1,0,0,3,1,0},
-		 	 {0,0,0,0,0,0,0,1,1,0,0,1,1,1,0,0,1,1,0},
-		 	 {0,0,0,0,0,0,0,1,1,0,0,0,1,1,0,0,1,1,0},
-		 	 {0,0,0,0,0,0,1,1,1,0,0,0,1,1,1,1,1,1,0},
-		 	 {0,0,0,0,0,0,1,1,0,0,0,0,1,1,1,0,0,1,0},
-		 	 {0,0,0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,1,1},
-		 	 {0,0,0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,1,1},
-		 	 {0,0,0,0,0,1,1,0,0,0,0,0,1,1,0,0,1,1,0},
-		 	 {0,0,0,0,0,1,1,0,0,0,0,0,1,0,0,0,0,1,1},
-		 	 {0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1},
-		 	 {0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,0},
-		 	 {5,0,0,0,0,1,0,1,1,0,0,0,0,0,0,0,1,1,0}};
+			 {1,1,1,1,1,0,0,0,0,0,0,1,1,0,0,0,1},
+			 {1,1,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0},
+			 {1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0},
+			 {1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0},
+			 {1,1,1,1,1,1,0,0,0,0,1,0,0,0,0,0,0},
+			 {1,1,1,1,1,1,0,0,0,0,1,1,0,0,0,0,0},
+			 {1,1,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0},
+			 {1,1,1,1,1,0,0,0,0,0,1,0,1,1,1,0,0},
+			 {1,1,1,1,0,0,0,0,0,0,1,0,0,1,1,1,0},
+			 {1,1,1,1,0,0,0,0,0,0,1,0,0,1,1,0,0},
+			 {0,1,1,0,0,0,0,0,0,1,0,0,0,1,1,0,0},
+			 {0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,0},
+			 {0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,0},
+			 {0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0},
+			 {0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0},
+			 {0,0,0,0,0,0,0,1,1,0,0,0,1,1,0,0,0},
+			 {0,0,0,0,0,0,0,1,1,0,0,1,1,1,0,0,0},
+			 {0,0,0,0,0,0,0,1,1,0,0,1,1,1,0,0,3},
+			 {5,0,0,0,0,0,0,1,1,0,0,1,1,1,0,0,1}};
 
 //	private static Integer mapLen = map.length-1;
 
@@ -77,8 +67,8 @@ public class HardGridWorldLauncher {
 
 		State initialState = BasicGridWorld.getExampleState(domain);
 
-		RewardFunction rf = new BasicRewardFunction(0,0); //Goal is at the top right grid
-		TerminalFunction tf = new BasicTerminalFunction(0,0); //Goal is at the top right grid
+		RewardFunction rf = new BasicRewardFunction(10,15); //Goal is at the top right grid
+		TerminalFunction tf = new BasicTerminalFunction(10,15); //Goal is at the top right grid
 		
 		SimulatedEnvironment env = new SimulatedEnvironment(domain, rf, tf,
 				initialState);

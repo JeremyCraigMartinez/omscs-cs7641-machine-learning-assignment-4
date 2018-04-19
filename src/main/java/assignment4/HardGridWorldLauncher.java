@@ -18,9 +18,9 @@ public class HardGridWorldLauncher {
 	private static boolean visualizeInitialGridWorld = true; //Loads a GUI with the agent, walls, and goal
 	
 	//runValueIteration, runPolicyIteration, and runQLearning indicate which algorithms will run in the experiment
-	private static boolean runValueIteration = true;
-	private static boolean runPolicyIteration = true;
-	private static boolean runQLearning = true;
+	private static boolean runValueIteration = false;
+	private static boolean runPolicyIteration = false;
+	private static boolean runQLearning = false;
 	
 	//showValueIterationPolicyMap, showPolicyIterationPolicyMap, and showQLearningPolicyMap will open a GUI
 	//you can use to visualize the policy maps. Consider only having one variable set to true at a time
@@ -29,9 +29,6 @@ public class HardGridWorldLauncher {
 	private static boolean showPolicyIterationPolicyMap = true;
 	private static boolean showQLearningPolicyMap = true;
 	
-	private static Integer MAX_ITERATIONS = 20;
-	private static Integer NUM_INTERVALS = 20;
-
 	protected static int[][] userMap = new int[][] { 
 			 {1,1,1,1,1,0,0,0,0,0,0,1,1,0,0,0,1},
 			 {1,1,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0},
@@ -56,6 +53,16 @@ public class HardGridWorldLauncher {
 //	private static Integer mapLen = map.length-1;
 
 	public static void main(String[] args) {
+		runner(10, 10);
+		//runner(30, 30);
+		//runner(50, 50);
+		//runner(70, 70);
+		//runner(90, 90);
+		//runner(400, 400);
+	}
+
+	private static void runner(Integer it, Integer in) {
+		System.out.println("Running " + Integer.toString(it));
 		// convert to BURLAP indexing
 		int[][] map = MapPrinter.mapToMatrix(userMap);
 		int maxX = map.length-1;
@@ -80,7 +87,7 @@ public class HardGridWorldLauncher {
 			visualizeInitialGridWorld(domain, gen, env);
 		}
 		
-		AnalysisRunner runner = new AnalysisRunner(MAX_ITERATIONS,NUM_INTERVALS);
+		AnalysisRunner runner = new AnalysisRunner(it,in);
 		if(runValueIteration){
 			runner.runValueIteration(gen,domain,initialState, rf, tf, showValueIterationPolicyMap);
 		}
